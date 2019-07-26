@@ -1,10 +1,10 @@
 <svg class="background" id="screen-start" display="none">
   <image href="images/start-bg.jpg" />
   
-  <text id="header">To the Surf!</text>
-  <text id="current-time" />
-  <text id="group-start-label" />
-  <text id="group-countdown" />
+  <text id="start-header" class="start-label">To the Surf!</text>
+  <text id="start-current-time" class="start-label" />
+  <text id="start-group-start-label" class="start-label" />
+  <text id="start-group-countdown" class="start-label" />
   
   <use id="start-btn" href="#combo-button-lower-right" fill="black">
     <set href="combo-button-icon" attributeName="href" to="images/btn_combo_play_p.png"/>

@@ -2,8 +2,8 @@
   <text class="sm-label-left" y="10%">Distance</text>
   <text class="sm-label-right" y="10%">Time</text>
   
-  <text class="md-label-left" y="23%" id="run-distance"></text>
-  <text class="md-label-right" y="23%" id="run-time"></text>
+  <text class="md-label-left" y="23%" id="run-distance" />
+  <text class="md-label-right" y="23%" id="run-time" />
   
   <rect x="10" y="32%" width="100%-20" height="25" fill="white"/>
   <svg x="12" y="32%+2" width="100%-24" height="21" id="progress-bar-container">
@@ -13,10 +13,10 @@
   </svg>
   
   <text class="sm-label-left" y="55%" id="run-pace-label">Pace (avg)</text>
-  <text class="md-label-left" y="68%" id="run-pace"></text>
+  <text class="md-label-left" y="68%" id="run-pace" />
   
   <text class="sm-label-left" y="80%">Predicted finish</text>
-  <text class="lg-label-left" y="96%" id="run-projected-time"></text>
+  <text class="lg-label-left" y="96%" id="run-projected-time" />
 
   <rect x="0" y="50%" width="60%" height="50%" opacity="0" pointer-events="visible" id="pace-mode-toggle"/>
   

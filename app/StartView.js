@@ -61,9 +61,9 @@ function startRun() {
 
 class StartView extends View {
   el = $();
-  timeLabel = $('#current-time');
-  groupStartLabel = $('#group-start-label');
-  groupCountdownLabel = $('#group-countdown');
+  timeLabel = $('#start-current-time');
+  groupStartLabel = $('#start-group-start-label');
+  groupCountdownLabel = $('#start-group-countdown');
   startButton = $('#start-btn');
   time = null;
 
