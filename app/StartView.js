@@ -50,6 +50,15 @@ function getNextStartGroup(time) {
   return { name: null, start: null };
 }
 
+function startRun() {
+  if (exercise.state === 'stopped') {
+    exercise.start('run', {
+      autopause: false,
+      gps: true,
+    });
+  }
+}
+
 class StartView extends View {
   el = $();
   timeLabel = $('#current-time');
@@ -58,15 +67,6 @@ class StartView extends View {
   startButton = $('#start-btn');
   time = null;
 
-  startRun() {
-    if (exercise.state === 'stopped') {
-      exercise.start('run', {
-        autopause: false,
-        gps: true,
-      });
-    }
-  }
-
   onMount() {
     clock.granularity = 'seconds';
     clock.ontick = (evt) => {
@@ -74,12 +74,11 @@ class StartView extends View {
       this.render();
     }
     
-    console.log(Location, Location.watchLocationStart)
     Location.watchLocationStart();
     
     this.startButton.onclick = function(evt) {
-      console.log('Start!');
       setStartTime(new Date());
+      startRun();
       Application.switchTo('RunView');
     }
   }

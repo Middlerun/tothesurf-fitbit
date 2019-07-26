@@ -26,6 +26,7 @@ class RunView extends View {
   progressBar = $('#progress-bar');
   runPaceDisplay = $('#run-pace');
   runProjectedTimeDisplay = $('#run-projected-time');
+  paceModeToggle = $('#pace-mode-toggle');
   distance = null;
   progressBarContainerWidth = 0;
   progressBarWidth = 0;
@@ -34,10 +35,12 @@ class RunView extends View {
   onMount() {
     this.progressBarContainerWidth = $('#progress-bar-container').getBBox().width;
     
-    this.update({ evt: new Date() });
-    
     clock.granularity = 'seconds';
     clock.ontick = this.update.bind(this);
+
+    this.paceModeToggle.onclick = this.togglePaceMode;
+    
+    this.update({ evt: new Date() });
   }
 
   onUnmount() {
@@ -48,6 +51,11 @@ class RunView extends View {
     this.time = evt.date;
     
     this.render();
+  };
+
+  togglePaceMode = () => {
+    this.paceMode = this.paceMode === CURRENT ? AVERAGE : CURRENT;
+    this.update({ evt: new Date() });
   };
 
   getRunTime() {
@@ -63,14 +71,24 @@ class RunView extends View {
 
   getPace() {
     if (this.paceMode === CURRENT) {
-      return exercise.stats.pace.current;
+      return exercise.stats ? exercise.stats.pace.current : null;
     } else {
-      return this.getAveragePace();
+      return this.distance > 0 ? this.getAveragePace() : null;
     }
   }
 
   getPredictedFinishTime() {
-    return this.getPace() * routeDistance / 1000;
+    const pace = this.getPace();
+    const remainingDistance = routeDistance - this.distance;
+
+    if (pace === null) return null;
+
+    if (this.paceMode === CURRENT) {
+      if (pace === 0) return null;
+      return this.getRunTime() + pace * remainingDistance / 1000;
+    } else {
+      return pace * routeDistance / 1000;
+    }
   }
 
   onRender() {
@@ -83,9 +101,11 @@ class RunView extends View {
     this.progressBar.display = 'none';
 
     this.runPaceLabel.text = this.paceMode === CURRENT ? 'Pace (current)' : 'Pace (avg)';
-    this.runPaceDisplay.text = this.distance === 0 ? '' : `${formatDuration(Math.round(this.getPace()))} min/km`;
+    const pace = this.getPace();
+    this.runPaceDisplay.text = pace ? `${formatDuration(Math.round(pace))} min/km` : '-';
 
-    this.runProjectedTimeDisplay.text = this.distance === 0 ? '' : formatDuration(Math.round(this.getPredictedFinishTime()));
+    const predictedFinishTime = this.getPredictedFinishTime();
+    this.runProjectedTimeDisplay.text = predictedFinishTime !== null ? formatDuration(Math.round(predictedFinishTime)) : '-';
   }
 }
 

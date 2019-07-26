@@ -17,6 +17,8 @@
   
   <text class="sm-label-left" y="80%">Predicted finish</text>
   <text class="lg-label-left" y="96%" id="run-projected-time"></text>
+
+  <rect x="0" y="50%" width="60%" height="50%" opacity="0" pointer-events="visible" id="pace-mode-toggle"/>
   
   <use id="finish-btn" href="#combo-button-lower-right" fill="white">
     <set href="combo-button-icon" attributeName="href" to="images/btn_combo_flag_p.png"/>

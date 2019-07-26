@@ -9,11 +9,10 @@ class Location {
   positionError = false;
 
   watchLocationStart() {
-    console.log('gps start');
     this.locationWatchId = geolocation.watchPosition((position) => {
       this.lastKnownPosition = position;
       this.positionError = false;
-      console.log(JSON.stringify(position));
+      // console.log(JSON.stringify(position));
     }, (error) => {
       console.error(error);
       this.positionError = true;
