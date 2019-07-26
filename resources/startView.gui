@@ -1,4 +1,4 @@
-<svg class="background" id="screen-start" display="none">
+<svg class="start-background" id="screen-start" display="none">
   <image href="images/start-bg.jpg" />
   
   <text id="start-header" class="start-label">To the Surf!</text>

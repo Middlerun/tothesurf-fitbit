@@ -1,4 +1,5 @@
 <svg>
   <link rel="import" href="startView.gui" />
   <link rel="import" href="runView.gui" />
+  <link rel="import" href="finishView.gui" />
 </svg>

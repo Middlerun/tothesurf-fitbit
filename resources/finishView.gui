@@ -1,0 +1,12 @@
+<svg class="finish-background" id="screen-finish" display="none">
+  <image href="images/finish-bg.jpg" />
+  
+  <text id="finish-header" class="finish-label">Finished!</text>
+  <text id="finish-time-label" class="finish-label">Final time:</text>
+  <text id="finish-time" class="finish-label" />
+  <textarea id="finish-mars-bar">
+Now go get a
+deep fried Mars Bar --
+you've earned it!
+  </textarea>
+</svg>

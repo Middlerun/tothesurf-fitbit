@@ -2,6 +2,7 @@
   <defs>
     <link rel="stylesheet" href="stylesStartView.css" />
     <link rel="stylesheet" href="stylesRunView.css" />
+    <link rel="stylesheet" href="stylesFinishView.css" />
     <link rel="import" href="/mnt/sysassets/widgets_common.gui" />
     <!-- Additional Imports -->
     <link rel="import" href="/mnt/sysassets/widgets/combo_button_widget.gui" />

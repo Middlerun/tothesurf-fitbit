@@ -1,9 +1,9 @@
-let startTime = null;
+let state = {};
 
-export function setStartTime(time) {
-  startTime = time;
+export function set(key, value) {
+  state[key] = value;
 }
 
-export function getStartTime() {
-  return startTime;
+export function get(key) {
+  return state[key];
 }

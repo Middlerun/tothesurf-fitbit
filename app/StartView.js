@@ -5,7 +5,7 @@ import { preferences } from 'user-settings';
 
 import { Application, View, $at } from './view';
 import { zeroPad } from '../common/utils';
-import { setStartTime } from '../common/sharedState';
+import { set } from '../common/sharedState';
 import Location from "../common/location";
 import { formatDuration } from '../common/time';
 
@@ -51,12 +51,16 @@ function getNextStartGroup(time) {
 }
 
 function startRun() {
+  set('startTime', new Date());
+
   if (exercise.state === 'stopped') {
     exercise.start('run', {
       autopause: false,
       gps: true,
     });
   }
+  
+  Application.switchTo('RunView');
 }
 
 class StartView extends View {
@@ -76,11 +80,7 @@ class StartView extends View {
     
     Location.watchLocationStart();
     
-    this.startButton.onclick = function(evt) {
-      setStartTime(new Date());
-      startRun();
-      Application.switchTo('RunView');
-    }
+    this.startButton.onclick = startRun;
   }
 
   onUnmount() {

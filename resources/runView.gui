@@ -1,4 +1,4 @@
-<svg class="background" id="screen-run" display="none">
+<svg class="run-background" id="screen-run" display="none">
   <text class="sm-label-left" y="10%">Distance</text>
   <text class="sm-label-right" y="10%">Time</text>
   

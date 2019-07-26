@@ -3,10 +3,10 @@ import document from 'document';
 import exercise from 'exercise';
 import { display } from 'display';
 
-import { View, $at } from './view';
+import { Application, View, $at } from './view';
 import Location from '../common/location';
 import { routeDistance } from '../common/route';
-import { getStartTime } from '../common/sharedState';
+import { get, set } from '../common/sharedState';
 import { formatDuration } from '../common/time';
 
 const hbhStartDist = 6156;
@@ -27,6 +27,7 @@ class RunView extends View {
   runPaceDisplay = $('#run-pace');
   runProjectedTimeDisplay = $('#run-projected-time');
   paceModeToggle = $('#pace-mode-toggle');
+  finishButton = $('#finish-btn');
   distance = null;
   progressBarContainerWidth = 0;
   progressBarWidth = 0;
@@ -39,11 +40,22 @@ class RunView extends View {
     clock.ontick = this.update.bind(this);
 
     this.paceModeToggle.onclick = this.togglePaceMode;
+
+    this.finishButton.onclick = this.finish.bind(this);
     
     this.update({ evt: new Date() });
   }
 
   onUnmount() {
+    clock.granularity = 'off';
+    clock.ontick = null;
+  }
+
+  finish() {
+    // TODO: Confirmation modal
+    set('runTime', this.getRunTime());
+    exercise.stop();
+    Application.switchTo('FinishView');
   }
 
   update = (evt) => {
@@ -59,7 +71,7 @@ class RunView extends View {
   };
 
   getRunTime() {
-    const startTime = Math.floor(getStartTime().getTime() / 1000);
+    const startTime = Math.floor(get('startTime').getTime() / 1000);
     const now = Math.floor(new Date().getTime() / 1000);
     return now - startTime;
   }
@@ -106,6 +118,8 @@ class RunView extends View {
 
     const predictedFinishTime = this.getPredictedFinishTime();
     this.runProjectedTimeDisplay.text = predictedFinishTime !== null ? formatDuration(Math.round(predictedFinishTime)) : '-';
+
+    this.finishButton.style.display = this.distance > 13000 ? 'inline' : 'none';
   }
 }
 

@@ -1,3 +1,7 @@
+.run-background {
+  viewport-fill: black;
+}
+
 #screen-run {
   font-family: System-Bold;
 }
