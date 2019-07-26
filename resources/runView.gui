@@ -1,0 +1,26 @@
+<svg class="background" id="screen-run" display="none">
+  <text class="sm-label-left" y="10%">Distance</text>
+  <text class="sm-label-right" y="10%">Time</text>
+  
+  <text class="md-label-left" y="23%" id="run-distance">2.36km</text>
+  <text class="md-label-right" y="23%" id="run-time">14:21</text>
+  
+  <rect x="10" y="32%" width="100%-20" height="25" fill="white"/>
+  <svg x="12" y="32%+2" width="100%-24" height="21" id="progress-bar-container">
+    <rect x="0%" y="0" width="0%" height="100%" fill="black" id="progress-bar"/>
+    <line x1="43%" y1="1" x2="43%" y2="100%-1" fill="#777777" stroke-width="2" />
+    <line x1="54%" y1="1" x2="54%" y2="100%-1" fill="#777777" stroke-width="2" />
+  </svg>
+  
+  <text class="sm-label-left" y="55%">Pace (avg)</text>
+  <text class="md-label-left" y="68%" id="run-pace">6:10 min/km</text>
+  
+  <text class="sm-label-left" y="80%">Predicted finish</text>
+  <text class="lg-label-left" y="96%" id="run-projected-time">1:29</text>
+  
+  <use id="finish-btn" href="#combo-button-lower-right" fill="white">
+    <set href="combo-button-icon" attributeName="href" to="images/btn_combo_flag_p.png"/>
+    <set href="combo-button-icon-press" attributeName="href" to="images/btn_combo_flag_p.png"/>
+    <set href="combo-button-stroke" attributeName="display" to="inline"/>
+  </use>
+</svg>

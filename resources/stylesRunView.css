@@ -1,0 +1,43 @@
+#screen-run {
+  font-family: System-Bold;
+}
+
+.sm-label-left {
+  x: 10;
+  text-anchor: start;
+  fill: #aaaaaa;
+  font-size: 25;
+  text-length: 16;
+}
+
+.sm-label-right {
+  x: 100%-10;
+  text-anchor: end;
+  fill: #aaaaaa;
+  font-size: 25;
+  text-length: 16;
+}
+
+.md-label-left {
+  x: 10;
+  text-anchor: start;
+  fill: white;
+  font-size: 34;
+  text-length: 16;
+}
+
+.md-label-right {
+  x: 100%-10;
+  text-anchor: end;
+  fill: white;
+  font-size: 34;
+  text-length: 16;
+}
+
+.lg-label-left {
+  x: 10;
+  text-anchor: start;
+  fill: white;
+  font-size: 50;
+  text-length: 16;
+}

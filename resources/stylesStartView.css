@@ -1,0 +1,45 @@
+.background {
+  viewport-fill: black;
+}
+
+/* Start screen: */
+
+#screen-start {
+  font-family: System-Bold;
+}
+
+#header {
+  font-size: 40;
+  text-length: 32;
+  text-anchor: middle;
+  x: 50%;
+  y: 40;
+  fill: black;
+}
+
+#current-time {
+  font-size: 60;
+  text-length: 32;
+  text-anchor: middle;
+  x: 50%;
+  y: 25%+30;
+  fill: black;
+}
+
+#group-start-label {
+  font-size: 30;
+  text-length: 32;
+  text-anchor: middle;
+  x: 50%;
+  y: 55%+15;
+  fill: black;
+}
+
+#group-countdown {
+  font-size: 50;
+  text-length: 32;
+  text-anchor: middle;
+  x: 50%;
+  y: 70%+25;
+  fill: black;
+}

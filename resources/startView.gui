@@ -1,0 +1,14 @@
+<svg class="background" id="screen-start" display="none">
+  <image href="images/start-bg.jpg" />
+  
+  <text id="header">To the Surf!</text>
+  <text id="current-time" />
+  <text id="group-start-label" />
+  <text id="group-countdown" />
+  
+  <use id="start-btn" href="#combo-button-lower-right" fill="black">
+    <set href="combo-button-icon" attributeName="href" to="images/btn_combo_play_p.png"/>
+    <set href="combo-button-icon-press" attributeName="href" to="images/btn_combo_play_press_p.png"/>
+    <set href="combo-button-stroke" attributeName="display" to="inline"/>
+  </use>
+</svg>
