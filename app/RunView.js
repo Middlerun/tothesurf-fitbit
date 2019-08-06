@@ -28,10 +28,18 @@ class RunView extends View {
   runProjectedTimeDisplay = $('#run-projected-time');
   paceModeToggle = $('#pace-mode-toggle');
   finishButton = $('#finish-btn');
+  cancelModal = $('#cancel-modal');
+  noCancelButton = $('#no-cancel');
+  yesCancelButton = $('#yes-cancel');
+  finishModal = $('#finish-modal');
+  noFinishButton = $('#no-finish');
+  yesFinishButton = $('#yes-finish');
   distance = null;
   progressBarContainerWidth = 0;
   progressBarWidth = 0;
   paceMode = AVERAGE;
+  cancelModalVisible = false;
+  finishModalVisible = false;
 
   onMount() {
     this.progressBarContainerWidth = $('#progress-bar-container').getBBox().width;
@@ -41,7 +49,14 @@ class RunView extends View {
 
     this.paceModeToggle.onclick = this.togglePaceMode;
 
-    this.finishButton.onclick = this.finish.bind(this);
+    this.noCancelButton.onclick = this.hideCancelModal;
+    this.yesCancelButton.onclick = this.cancel;
+
+    this.finishButton.onclick = this.showFinishModal;
+    this.noFinishButton.onclick = this.hideFinishModal;
+    this.yesFinishButton.onclick = this.finish;
+
+    document.onkeypress = this.onKeyPress;
     
     this.update({ evt: new Date() });
   }
@@ -49,10 +64,42 @@ class RunView extends View {
   onUnmount() {
     clock.granularity = 'off';
     clock.ontick = null;
+    document.onkeypress = null;
   }
 
-  finish() {
-    // TODO: Confirmation modal
+  onKeyPress = (e) => {
+    if (e.key === 'back') {
+      e.preventDefault();
+      this.showCancelModal();
+    }
+  }
+
+  showCancelModal = () => {
+    this.cancelModalVisible = true;
+    this.render();
+  };
+
+  hideCancelModal = () => {
+    this.cancelModalVisible = false;
+    this.render();
+  };
+
+  showFinishModal = () => {
+    this.finishModalVisible = true;
+    this.render();
+  };
+
+  hideFinishModal = () => {
+    this.finishModalVisible = false;
+    this.render();
+  };
+
+  cancel = () => {
+    exercise.stop();
+    Application.switchTo('StartView');
+  }
+
+  finish = () => {
     set('runTime', this.getRunTime());
     exercise.stop();
     Application.switchTo('FinishView');
@@ -110,7 +157,6 @@ class RunView extends View {
     const progressBarWidth = Math.floor(this.progressBarContainerWidth * this.distance / routeDistance);
     this.progressBar.x = progressBarWidth;
     this.progressBar.width = this.progressBarContainerWidth - progressBarWidth;
-    this.progressBar.display = 'none';
 
     this.runPaceLabel.text = this.paceMode === CURRENT ? 'Pace (current)' : 'Pace (avg)';
     const pace = this.getPace();
@@ -120,6 +166,9 @@ class RunView extends View {
     this.runProjectedTimeDisplay.text = predictedFinishTime !== null ? formatDuration(Math.round(predictedFinishTime)) : '-';
 
     this.finishButton.style.display = this.distance > 13000 ? 'inline' : 'none';
+
+    this.cancelModal.style.display = this.cancelModalVisible ? 'inline' : 'none';
+    this.finishModal.style.display = this.finishModalVisible ? 'inline' : 'none';
   }
 }
 

@@ -5,6 +5,10 @@
     <link rel="stylesheet" href="stylesFinishView.css" />
     <link rel="import" href="/mnt/sysassets/widgets_common.gui" />
     <!-- Additional Imports -->
+    <link rel="stylesheet" href="/mnt/sysassets/widgets/dynamic_textarea.css" />
     <link rel="import" href="/mnt/sysassets/widgets/combo_button_widget.gui" />
+    <link rel="import" href="/mnt/sysassets/widgets/dynamic_textarea.gui" />
+    <link rel="import" href="/mnt/sysassets/widgets/square_button_widget.gui" />
+    <link rel="import" href="/mnt/sysassets/widgets/mixed_text_widget.gui" />
   </defs>
 </svg>

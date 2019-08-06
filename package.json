@@ -2,7 +2,7 @@
   "fitbit": {
     "appUUID": "b4507768-b1b9-4a38-b4f3-4ddbe90a24cb",
     "appType": "app",
-    "appDisplayName": "To the Surf",
+    "appDisplayName": "To the Surf!",
     "iconFile": "resources/icon.png",
     "wipeColor": "#607d8b",
     "requestedPermissions": [
@@ -17,7 +17,7 @@
     ],
     "i18n": {
       "en": {
-        "name": "To the Surf"
+        "name": "To the Surf!"
       }
     },
     "defaultLanguage": "en-US"

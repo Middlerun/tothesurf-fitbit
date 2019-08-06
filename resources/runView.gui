@@ -1,10 +1,12 @@
 <svg class="run-background" id="screen-run" display="none">
+  <!-- Distance and time -->
   <text class="sm-label-left" y="10%">Distance</text>
   <text class="sm-label-right" y="10%">Time</text>
   
   <text class="md-label-left" y="23%" id="run-distance" />
   <text class="md-label-right" y="23%" id="run-time" />
   
+  <!-- Progress bar -->
   <rect x="10" y="32%" width="100%-20" height="25" fill="white"/>
   <svg x="12" y="32%+2" width="100%-24" height="21" id="progress-bar-container">
     <rect x="0%" y="0" width="0%" height="100%" fill="black" id="progress-bar"/>
@@ -12,17 +14,73 @@
     <line x1="54%" y1="1" x2="54%" y2="100%-1" fill="#777777" stroke-width="2" />
   </svg>
   
+  <!-- Pace -->
   <text class="sm-label-left" y="55%" id="run-pace-label">Pace (avg)</text>
   <text class="md-label-left" y="68%" id="run-pace" />
   
+  <!-- Predicted finish -->
   <text class="sm-label-left" y="80%">Predicted finish</text>
   <text class="lg-label-left" y="96%" id="run-projected-time" />
 
+  <!-- Pace mode toggle -->
   <rect x="0" y="50%" width="60%" height="50%" opacity="0" pointer-events="visible" id="pace-mode-toggle"/>
   
+  <!-- Finish button -->
   <use id="finish-btn" href="#combo-button-lower-right" fill="white">
     <set href="combo-button-icon" attributeName="href" to="images/btn_combo_flag_p.png"/>
     <set href="combo-button-icon-press" attributeName="href" to="images/btn_combo_flag_p.png"/>
     <set href="combo-button-stroke" attributeName="display" to="inline"/>
   </use>
+
+  <!-- Cancel modal -->
+  <svg id="cancel-modal" display="none">
+    <rect class="full-size" fill="fb-black" />
+
+    <!-- Title and text -->
+    <use href="#mixed-text-center-mid" class="dialog-mixed-text" fill="fb-white">
+      <set href="#top-padding" attributeName="display" to="none" />
+      <set href="#header/text" attributeName="text-buffer" to="Cancel run" />
+      <set href="#header/text" attributeName="fill" to="fb-magenta"/>
+      <set href="#copy/text" attributeName="text-buffer" to="Are you sure?" />
+      <set href="#bottom-padding" attributeName="display" to="none" />
+    </use>
+
+    <!-- Left button -->
+    <use id="no-cancel" class="dialog-half-button-left" href="#square-button-neutral">
+      <set href="#text" attributeName="text-buffer" to="No" />
+      <set href="#text" attributeName="text-anchor" to="middle" />
+    </use>
+
+    <!-- Right button -->
+    <use id="yes-cancel" class="dialog-half-button-right" href="#square-button-negative">
+      <set href="#text" attributeName="text-buffer" to="Yes" />
+      <set href="#text" attributeName="text-anchor" to="middle" />
+    </use>
+  </svg>
+
+  <!-- Finish modal -->
+  <svg id="finish-modal" display="none">
+    <rect class="full-size" fill="fb-black" />
+
+    <!-- Title and text -->
+    <use href="#mixed-text-center-mid" class="dialog-mixed-text" fill="fb-white">
+      <set href="#top-padding" attributeName="display" to="none" />
+      <set href="#header/text" attributeName="text-buffer" to="Finish run" />
+      <set href="#header/text" attributeName="fill" to="fb-magenta"/>
+      <set href="#copy/text" attributeName="text-buffer" to="Are you sure?" />
+      <set href="#bottom-padding" attributeName="display" to="none" />
+    </use>
+
+    <!-- Left button -->
+    <use id="no-finish" class="dialog-half-button-left" href="#square-button-neutral">
+      <set href="#text" attributeName="text-buffer" to="No" />
+      <set href="#text" attributeName="text-anchor" to="middle" />
+    </use>
+
+    <!-- Right button -->
+    <use id="yes-finish" class="dialog-half-button-right" href="#square-button-negative">
+      <set href="#text" attributeName="text-buffer" to="Yes" />
+      <set href="#text" attributeName="text-anchor" to="middle" />
+    </use>
+  </svg>
 </svg>

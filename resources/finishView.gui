@@ -1,9 +1,12 @@
 <svg class="finish-background" id="screen-finish" display="none">
   <image href="images/finish-bg.jpg" />
   
+  <!-- Header -->
   <text id="finish-header" class="finish-label">Finished!</text>
   <text id="finish-time-label" class="finish-label">Final time:</text>
   <text id="finish-time" class="finish-label" />
+  
+  <!-- Helpful advice -->
   <textarea id="finish-mars-bar">
 Now go get a
 deep fried Mars Bar --
