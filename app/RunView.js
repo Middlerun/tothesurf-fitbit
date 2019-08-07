@@ -1,7 +1,6 @@
 import clock from 'clock';
 import document from 'document';
 import exercise from 'exercise';
-import { display } from 'display';
 
 import { Application, View, $at } from './view';
 import Location from '../common/location';
@@ -9,8 +8,10 @@ import { routeDistance } from '../common/route';
 import { get, set } from '../common/sharedState';
 import { formatDuration } from '../common/time';
 
-const hbhStartDist = 6156;
-const hbhEndDist = 7715;
+// TODO: Show message at start/end of Heartbreak Hill
+const hbhStartDist = 6040;
+const hbhEndDist = 7640;
+const showFinishThreshold = 12900;
 
 const $ = $at('#screen-run');
 
@@ -165,7 +166,7 @@ class RunView extends View {
     const predictedFinishTime = this.getPredictedFinishTime();
     this.runProjectedTimeDisplay.text = predictedFinishTime !== null ? formatDuration(Math.round(predictedFinishTime)) : '-';
 
-    this.finishButton.style.display = this.distance > 13000 ? 'inline' : 'none';
+    this.finishButton.style.display = this.distance > showFinishThreshold ? 'inline' : 'none';
 
     this.cancelModal.style.display = this.cancelModalVisible ? 'inline' : 'none';
     this.finishModal.style.display = this.finishModalVisible ? 'inline' : 'none';
