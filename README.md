@@ -15,3 +15,5 @@ At the Fitbit prompt, connect to your device or simulator. Then:
 build
 install
 ```
+
+See [here](https://dev.fitbit.com/build/guides/command-line-interface/) for more information about installation.
