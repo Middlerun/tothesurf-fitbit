@@ -1,6 +1,8 @@
 # To the Surf!
 
-An app for the City2Surf fun run, which displays your progress, pace and projected finish time. The distance is calculated by measuring your location against a map of the course.
+A Fitbit app for the City2Surf fun run, which displays your progress, pace and projected finish time. The distance is calculated by measuring your location against a map of the course.
+
+Works with Fitbit Versa, Versa Lite and Ionic.
 
 ## Sideloading
 
