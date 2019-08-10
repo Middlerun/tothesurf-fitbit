@@ -45,3 +45,10 @@
   font-size: 50;
   text-length: 16;
 }
+
+#message-label {
+  text-anchor: middle;
+  fill: #ffff00;
+  font-size: 25;
+  text-length: 16;
+}

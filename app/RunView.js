@@ -1,6 +1,7 @@
 import clock from 'clock';
 import document from 'document';
 import exercise from 'exercise';
+import { vibration } from "haptics";
 
 import { Application, View, $at } from './view';
 import Location from '../common/location';
@@ -8,10 +9,9 @@ import { routeDistance } from '../common/route';
 import { get, set } from '../common/sharedState';
 import { formatDuration } from '../common/time';
 
-// TODO: Show message at start/end of Heartbreak Hill
-const hbhStartDist = 6040;
-const hbhEndDist = 7640;
-const showFinishThreshold = 12900;
+const HBH_START_DIST = 6040;
+const HBH_END_DIST = 7640;
+const SHOW_FINISH_THRESHOLD = 12900;
 
 const $ = $at('#screen-run');
 
@@ -35,12 +35,24 @@ class RunView extends View {
   finishModal = $('#finish-modal');
   noFinishButton = $('#no-finish');
   yesFinishButton = $('#yes-finish');
+  messageContainer = $('#message-container');
+  messageLabel = $('#message-label');
   distance = null;
   progressBarContainerWidth = 0;
   progressBarWidth = 0;
   paceMode = AVERAGE;
   cancelModalVisible = false;
   finishModalVisible = false;
+  messageContainerVisible = false;
+  messageVisible = false;
+  messageText = '';
+  startHbhMessageTriggered = false;
+  endHbhMessageTriggered = false;
+  messages = [
+    { threshold: HBH_START_DIST, text: 'Heartbreak Hill!', triggered: false },
+    { threshold: HBH_END_DIST, text: 'Well done!', triggered: false },
+    { threshold: 13000, text: '1 km left!', triggered: false },
+  ];
 
   onMount() {
     this.progressBarContainerWidth = $('#progress-bar-container').getBBox().width;
@@ -111,6 +123,14 @@ class RunView extends View {
     this.time = evt.date;
     
     this.render();
+
+    // Show any applicable messages
+    this.messages.forEach(message => {
+      if (this.distance >= message.threshold && !message.triggered) {
+        this.triggerMessage(message.text)
+        message.triggered = true;
+      }
+    });
   };
 
   togglePaceMode = () => {
@@ -151,6 +171,23 @@ class RunView extends View {
     }
   }
 
+  triggerMessage(text) {
+    this.messageText = text;
+    this.messageContainerVisible = true;
+    let interval;
+    let count = 0;
+    vibration.start('alert');
+    interval = setInterval(() => {
+      count++;
+      this.messageVisible = !(count % 2);
+      if (count >= 18) {
+        this.messageContainerVisible = false;
+        clearInterval(interval);
+      }
+      this.render();
+    }, 400);
+  }
+
   onRender() {
     this.runDistanceDisplay.text = this.distance === null ? '' : `${(this.distance / 1000).toFixed(2)}km`;
     this.runTimeDisplay.text = formatDuration(this.getRunTime());
@@ -166,10 +203,14 @@ class RunView extends View {
     const predictedFinishTime = this.getPredictedFinishTime();
     this.runProjectedTimeDisplay.text = predictedFinishTime !== null ? formatDuration(Math.round(predictedFinishTime)) : '-';
 
-    this.finishButton.style.display = this.distance > showFinishThreshold ? 'inline' : 'none';
+    this.finishButton.style.display = this.distance > SHOW_FINISH_THRESHOLD ? 'inline' : 'none';
 
     this.cancelModal.style.display = this.cancelModalVisible ? 'inline' : 'none';
     this.finishModal.style.display = this.finishModalVisible ? 'inline' : 'none';
+
+    this.messageLabel.text = this.messageText;
+    this.messageLabel.style.display = this.messageVisible ? 'inline' : 'none';
+    this.messageContainer.style.display = this.messageContainerVisible ? 'inline' : 'none';
   }
 }
 

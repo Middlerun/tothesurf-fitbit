@@ -14,6 +14,12 @@
     <line x1="54%" y1="1" x2="54%" y2="100%-1" fill="#777777" stroke-width="2" />
   </svg>
   
+  <!-- Message -->
+  <svg x="10" y="32%" width="100%-20" height="25" id="message-container">
+    <rect x="0%" y="0%" width="100%" height="100%" fill="black"/>
+    <text x="50%" y="50%+10" id="message-label">Heartbreak Hill!</text>
+  </svg>
+  
   <!-- Pace -->
   <text class="sm-label-left" y="55%" id="run-pace-label">Pace (avg)</text>
   <text class="md-label-left" y="68%" id="run-pace" />
